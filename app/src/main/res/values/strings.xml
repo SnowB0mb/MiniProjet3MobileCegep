@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MiniProjet3MobileCegep</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lbl_connexion_mat">Matricule:</string>
+    <string name="lbl_connexion_mdp">Mot de passe:</string>
+    <string name="btn_connexion_valider">Connexion</string>
 </resources>
