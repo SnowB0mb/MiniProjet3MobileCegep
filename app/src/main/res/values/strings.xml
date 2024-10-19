@@ -4,4 +4,13 @@
     <string name="lbl_connexion_mat">Matricule:</string>
     <string name="lbl_connexion_mdp">Mot de passe:</string>
     <string name="btn_connexion_valider">Connexion</string>
+    <string name="btn_enregistrement">Nouveau compte</string>
+    <string name="lbl_enregistrement_mat">Matricule:</string>
+    <string name="lbl_enregistrement_mdp">Mot de passe:</string>
+    <string name="lbl_enregistrement_mdp2">Confirmez votre mot de passe:</string>
+    <string name="lbl_enregistrement_prenom">Prénom:</string>
+    <string name="lbl_enregistrement_nom">Nom:</string>
+    <string name="btn_enregistrement_valider">Enregistrer</string>
+    <string name="btn_enregistrement_annuler">Annuler</string>
+    <string name="erreur_champ_vide">*</string>
 </resources>

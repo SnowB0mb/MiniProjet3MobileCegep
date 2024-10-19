@@ -5,7 +5,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-private const val BASE_URL = "https://succursales.onrender.com"
+private const val BASE_URL = "https://succursales.onrender.com/"
 class RetrofitInstance {
     companion object{
 

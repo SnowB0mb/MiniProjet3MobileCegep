@@ -15,13 +15,13 @@ import retrofit2.Response
 
 class SuccursaleViewModel (private val succursalesRepository: SuccursalesRepository): ViewModel() {
     val responseConnexion: MutableLiveData<Response<ResponseStudent>> = MutableLiveData()
-    val responseEnregistrement: MutableLiveData<ResponseStudent> = MutableLiveData()
-    val responseListSuccursale: MutableLiveData<ResponseSuccursaleListe> = MutableLiveData()
-    val responseNbSuccursale: MutableLiveData<ResponseSuccursaleCompte> = MutableLiveData()
-    val responseBudgetSuccursale: MutableLiveData<ResponseSuccursaleBudget> = MutableLiveData()
-    val responseAjoutSuccursale: MutableLiveData<ResponseOperation> = MutableLiveData()
-    val responseRetraitSuccursale: MutableLiveData<ResponseOperation> = MutableLiveData()
-    val responseSuppressionSuccursale: MutableLiveData<ResponseOperation> = MutableLiveData()
+    val responseEnregistrement: MutableLiveData<Response<ResponseStudent>> = MutableLiveData()
+    val responseListSuccursale: MutableLiveData<Response<ResponseSuccursaleListe>> = MutableLiveData()
+    val responseNbSuccursale: MutableLiveData<Response<ResponseSuccursaleCompte>> = MutableLiveData()
+    val responseBudgetSuccursale: MutableLiveData<Response<ResponseSuccursaleBudget>> = MutableLiveData()
+    val responseAjoutSuccursale: MutableLiveData<Response<ResponseOperation>> = MutableLiveData()
+    val responseRetraitSuccursale: MutableLiveData<Response<ResponseOperation>> = MutableLiveData()
+    val responseSuppressionSuccursale: MutableLiveData<Response<ResponseOperation>> = MutableLiveData()
 
     //Connexion d'un utilisateur
 
@@ -37,9 +37,28 @@ class SuccursaleViewModel (private val succursalesRepository: SuccursalesReposit
         try {
             val response = succursalesRepository.connexion(strMat, strMdp)
             Log.d("SuccursaleViewModel", "Received response: $response")
+            Log.d("SuccursaleViewModel", "Response body: ${response.body()}")
             responseConnexion.postValue(response)
         } catch (e: Exception) {
             Log.e("SuccursaleViewModel", "Error connecting user", e)
+        }
+    }
+
+    //Enregistrement d'un utilisateur
+    fun registerUser(strMat: String, strMdp: String, strPrenom: String, strNom: String){
+        Log.d("SuccursaleViewModel", "registerUser called with matricule: $strMat")
+        enregistrement(strMat, strMdp, strNom, strPrenom)
+    }
+
+    private fun enregistrement(strMat: String, strMdp: String, strPrenom: String, strNom: String) = viewModelScope.launch{
+        Log.d("SuccursaleViewModel", "Attempting to register user with matricule: $strMat")
+        try {
+            val response = succursalesRepository.enregistrement(strMat, strMdp, strNom, strPrenom)
+            Log.d("SuccursaleViewModel", "Received response: $response")
+            Log.d("SuccursaleViewModel", "Response body: ${response.body()}")
+            responseEnregistrement.postValue(response)
+        }catch (e: Exception){
+            Log.e("SuccursaleViewModel", "Error registering user", e)
         }
     }
 }

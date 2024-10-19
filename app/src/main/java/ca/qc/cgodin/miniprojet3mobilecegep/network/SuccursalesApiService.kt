@@ -8,55 +8,63 @@ import ca.qc.cgodin.miniprojet3mobilecegep.models.ResponseSuccursaleListe
 import retrofit2.Response
 import retrofit2.http.DELETE
 import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
-import retrofit2.http.Query
 
 interface SuccursalesApiService {
-    @POST("students/Connexion")
+    @FormUrlEncoded
+    @POST("/students/Connexion")
     suspend fun connexion(
-        @Query("Mat") matricule: String,
-        @Query("MDP") mdp: String,
+        @Field("Mat") matricule: String,
+        @Field("MDP") mdp: String,
     ): Response<ResponseStudent>
 
-    @POST("/student/Enregistrement")
+    @FormUrlEncoded
+    @POST("/students/Enregistrement")
     suspend fun enregistrement(
-        @Query("Mat") matricule: String,
-        @Query("MDP") mdp: String,
-        @Query("Nom") nom: String,
-        @Query("Prenom") prenom: String,
+        @Field("Mat") matricule: String,
+        @Field("MDP") mdp: String,
+        @Field("Nom") nom: String,
+        @Field("Prenom") prenom: String,
     ): Response<ResponseStudent>
 
+    @FormUrlEncoded
     @POST("/succursales/Succursale-Liste")
     suspend fun getListSuccursale(
-        @Query("Aut") aut: String,
+        @Field("Aut") aut: String,
     ): Response<ResponseSuccursaleListe>
 
+    @FormUrlEncoded
     @POST("/succursales/Succursale-Compte")
     suspend fun getNbSuccursale(
-        @Query("Aut") aut: String,
+        @Field("Aut") aut: String,
     ): Response<ResponseSuccursaleCompte>
 
+    @FormUrlEncoded
     @POST("/succursales/Succursale-Budget")
     suspend fun getBudgetSuccursale(
-        @Query("Aut") aut: String,
-        @Query("Ville") ville: String,
+        @Field("Aut") aut: String,
+        @Field("Ville") ville: String,
     ): Response<ResponseSuccursaleBudget>
 
+    @FormUrlEncoded
     @POST("/succursales/Succursale-Ajout")
     suspend fun ajoutSuccursale(
-        @Query("Aut") aut: String,
-        @Query("Ville") ville: String,
-        @Query("Budget") budget: String,
+        @Field("Aut") aut: String,
+        @Field("Ville") ville: String,
+        @Field("Budget") budget: String,
     ): Response<ResponseOperation>
 
+    @FormUrlEncoded
     @DELETE("/succursales/Succursale-Retrait")
     suspend fun retraitSuccursale(
-        @Query("Aut") aut: String,
-        @Query("Ville") ville: String,
+        @Field("Aut") aut: String,
+        @Field("Ville") ville: String,
     ): Response<ResponseOperation>
 
+    @FormUrlEncoded
     @DELETE("/succursales/Succursale-Suppression")
     suspend fun suppressionSuccursale(
-        @Query("Aut") aut: String,
+        @Field("Aut") aut: String,
     ): Response<ResponseOperation>
 }
