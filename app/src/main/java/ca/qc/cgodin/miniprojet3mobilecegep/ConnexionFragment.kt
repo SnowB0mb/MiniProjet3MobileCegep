@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import ca.qc.cgodin.miniprojet3mobilecegep.databinding.FragmentConnexionBinding
 import ca.qc.cgodin.miniprojet3mobilecegep.repository.SuccursalesRepository
 
@@ -17,9 +19,7 @@ class ConnexionFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private val viewModel: SuccursaleViewModel by viewModels{SuccursaleViewModelProviderFactory(
-        SuccursalesRepository()
-    )}
+    private val viewModel: SuccursaleViewModel by navGraphViewModels(R.id.succursale_nav_graph)
     private lateinit var binding: FragmentConnexionBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,19 +49,23 @@ class ConnexionFragment : Fragment() {
                 binding.editMDP.text.toString()
             )
         }
+        binding.btnEnregistrement.setOnClickListener() {
+            findNavController().navigate(R.id.action_connexionFragment_to_enregistrementFragment)
+        }
         viewModel.responseConnexion.observe(viewLifecycleOwner, Observer { response ->
             if (response.isSuccessful) {
                 val responseBody = response.body()
                 if (responseBody != null && responseBody.statut == "OK") {
                     // Connection successful, update UI accordingly
-                    binding.tvStatus.text = "Connection successful"
+                    binding.tvConnexionStatut.text = "Connection successful"
+                    findNavController().navigate(R.id.action_connexionFragment_to_listSuccursaleFragment)
                 } else {
                     // Connection failed, update UI accordingly
-                    binding.tvStatus.text = "Connection failed: ${responseBody?.error ?: "Unknown error"}"
+                    binding.tvConnexionStatut.text = "La connection a échoué: ${responseBody?.error ?: "Unknown error"}"
                 }
             } else {
                 // Handle the error response
-                binding.tvStatus.text = "Connection failed: ${response.message()}"
+                binding.tvConnexionStatut.text = "Connection failed: ${response.message()}"
             }
         })
     }
