@@ -13,4 +13,11 @@
     <string name="btn_enregistrement_valider">Enregistrer</string>
     <string name="btn_enregistrement_annuler">Annuler</string>
     <string name="erreur_champ_vide">*</string>
+    <string name="lbl_liste_ville">Ville: </string>
+    <string name="lbl_liste_budget">Budget: </string>
+    <string name="rien_a_afficher">Rien à afficher</string>
+    <string name="operation_succursale_menu">Opérations sur les succursales</string>
+    <string name="liste_succursale_menu">Liste des succursales</string>
+    <string name="liste_favoris_menu">Liste des favoris</string>
+    <string name="deconnexion_menu">Déconnexion</string>
 </resources>

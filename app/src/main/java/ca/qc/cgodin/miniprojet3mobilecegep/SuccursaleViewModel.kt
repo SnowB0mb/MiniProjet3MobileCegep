@@ -61,4 +61,22 @@ class SuccursaleViewModel (private val succursalesRepository: SuccursalesReposit
             Log.e("SuccursaleViewModel", "Error registering user", e)
         }
     }
+
+    //récupérer la liste des succursales pour le compte qui est connecté
+    fun getListSuccursale(strMat: String){
+        Log.d("SuccursaleViewModel", "getListSuccursale called")
+        listSuccursale(strMat)
+    }
+
+    private fun listSuccursale(strMat: String) = viewModelScope.launch{
+        Log.d("SuccursaleViewModel", "Attempting to get list of succursale: $strMat")
+        try {
+            val response = succursalesRepository.getListSuccursale(strMat)
+            Log.d("SuccursaleViewModel", "Received response: $response")
+            Log.d("SuccursaleViewModel", "Response body: ${response.body()}")
+            responseListSuccursale.postValue(response)
+        }catch (e: Exception){
+            Log.e("SuccursaleViewModel", "Error getting list of succursale", e)
+        }
+    }
 }
