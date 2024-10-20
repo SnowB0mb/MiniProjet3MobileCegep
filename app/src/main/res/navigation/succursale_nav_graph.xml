@@ -15,19 +15,25 @@
             app:destination="@id/enregistrementFragment" />
         <action
             android:id="@+id/action_connexionFragment_to_listSuccursaleFragment"
-            app:destination="@id/listSuccursaleFragment" />
+            app:destination="@id/listSuccursaleFragment" >
+            <argument
+                android:name="aut"
+                app:nullable="true" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/listSuccursaleFragment"
         android:name="ca.qc.cgodin.miniprojet3mobilecegep.ListSuccursaleFragment"
         android:label="fragment_list_succursale"
         tools:layout="@layout/fragment_list_succursale" >
-        <argument
-            android:name="aut"
-            app:argType="string" />
         <action
             android:id="@+id/action_listSuccursaleFragment_to_connexionFragment"
             app:destination="@id/connexionFragment" />
+        <argument
+            android:name="aut"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null"/>
     </fragment>
     <fragment
         android:id="@+id/enregistrementFragment"

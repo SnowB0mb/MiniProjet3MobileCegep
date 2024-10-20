@@ -1,6 +1,7 @@
 package ca.qc.cgodin.miniprojet3mobilecegep
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -58,8 +59,12 @@ class ConnexionFragment : Fragment() {
                 if (responseBody != null && responseBody.statut == "OK") {
                     // Connection successful, update UI accordingly
                     binding.tvConnexionStatut.text = "Connection successful"
-                    findNavController().navigate(R.id.action_connexionFragment_to_listSuccursaleFragment)
-                } else {
+                    val bundle = Bundle().apply{
+                        putSerializable("aut", responseBody.student?.matricule.toString())
+                    }
+                    findNavController().navigate(R.id.action_connexionFragment_to_listSuccursaleFragment, bundle)
+                }
+                else {
                     // Connection failed, update UI accordingly
                     binding.tvConnexionStatut.text = "La connection a échoué: ${responseBody?.error ?: "Unknown error"}"
                 }
