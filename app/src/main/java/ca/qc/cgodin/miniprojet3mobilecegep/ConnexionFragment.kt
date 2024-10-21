@@ -1,5 +1,6 @@
 package ca.qc.cgodin.miniprojet3mobilecegep
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -20,7 +21,7 @@ class ConnexionFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private val viewModel: SuccursaleViewModel by navGraphViewModels(R.id.succursale_nav_graph)
+    private val viewModel: SuccursaleViewModel by navGraphViewModels(R.id.user_nav_graph)
     private lateinit var binding: FragmentConnexionBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,10 +60,12 @@ class ConnexionFragment : Fragment() {
                 if (responseBody != null && responseBody.statut == "OK") {
                     // Connection successful, update UI accordingly
                     binding.tvConnexionStatut.text = "Connection successful"
-                    val bundle = Bundle().apply{
-                        putSerializable("aut", responseBody.student?.matricule.toString())
-                    }
-                    findNavController().navigate(R.id.action_connexionFragment_to_listSuccursaleFragment, bundle)
+//                    val bundle = Bundle().apply{
+//                        putSerializable("aut", responseBody.student?.matricule.toString())
+//                    }
+                    val intent = Intent(this@ConnexionFragment.context, SuccursaleActivity::class.java)
+                    intent.putExtra("aut", responseBody.student?.matricule.toString())
+                    startActivity(intent)
                 }
                 else {
                     // Connection failed, update UI accordingly

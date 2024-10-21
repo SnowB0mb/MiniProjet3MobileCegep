@@ -17,7 +17,7 @@ private const val ARG_PARAM2 = "param2"
 
 class EnregistrementFragment : Fragment() {
     private lateinit var binding: FragmentEnregistrementBinding
-    private val viewModel: SuccursaleViewModel by navGraphViewModels(R.id.succursale_nav_graph)
+    private val viewModel: SuccursaleViewModel by navGraphViewModels(R.id.user_nav_graph)
     private var param1: String? = null
     private var param2: String? = null
 
