@@ -20,4 +20,6 @@
     <string name="liste_succursale_menu">Liste des succursales</string>
     <string name="liste_favoris_menu">Liste des favoris</string>
     <string name="deconnexion_menu">Déconnexion</string>
+    <string name="btn_favoris">❤️</string>
+    <string name="btn_supprimer">❌</string>
 </resources>

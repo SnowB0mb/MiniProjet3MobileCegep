@@ -26,6 +26,7 @@ class SuccursaleAdapter() :
         val succursale = succursales[position]
         holder.tvVille.text = succursale.ville
         holder.tvBudget.text = succursale.budget.toString()
+
     }
 
     override fun getItemCount(): Int = succursales.size

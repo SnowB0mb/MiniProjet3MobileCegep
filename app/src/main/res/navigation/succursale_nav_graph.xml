@@ -34,6 +34,9 @@
             app:argType="string"
             app:nullable="true"
             android:defaultValue="@null"/>
+        <action
+            android:id="@+id/action_listSuccursaleFragment_to_favorisFragment"
+            app:destination="@id/favorisFragment" />
     </fragment>
     <fragment
         android:id="@+id/enregistrementFragment"
@@ -49,4 +52,9 @@
         android:name="ca.qc.cgodin.miniprojet3mobilecegep.OperationSuccursaleFragment"
         android:label="fragment_operation_succursale"
         tools:layout="@layout/fragment_operation_succursale" />
+    <fragment
+        android:id="@+id/favorisFragment"
+        android:name="ca.qc.cgodin.miniprojet3mobilecegep.FavorisFragment"
+        android:label="FavorisFragment"
+        tools:layout="@layout/fragment_favoris" />
 </navigation>

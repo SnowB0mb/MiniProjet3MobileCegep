@@ -9,7 +9,7 @@
         android:icon="@drawable/ic_baseline_view_list"
         android:title="@string/liste_succursale_menu" />
     <item
-        android:id="@+id/savedSuccursaleFragment"
+        android:id="@+id/FavorisFragment"
         android:icon="@drawable/ic_baseline_favorite"
         android:title="@string/liste_favoris_menu" />
 </menu>
