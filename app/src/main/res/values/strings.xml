@@ -20,4 +20,7 @@
     <string name="liste_succursale_menu">Liste des succursales</string>
     <string name="liste_favoris_menu">Liste des favoris</string>
     <string name="deconnexion_menu">Déconnexion</string>
+    <string name="placeholder_search_succursale">Succursale</string>
+    <string name="succursale_inexistante">Succursale inexistante</string>
+    <string name="nombre_succursales">Nombre de succursales</string>
 </resources>

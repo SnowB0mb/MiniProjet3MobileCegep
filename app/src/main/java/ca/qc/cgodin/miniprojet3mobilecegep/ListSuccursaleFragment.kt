@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import ca.qc.cgodin.miniprojet3mobilecegep.databinding.FragmentListSuccursaleBinding
+import ca.qc.cgodin.miniprojet3mobilecegep.models.Succursale
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -43,23 +45,68 @@ class ListSuccursaleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentListSuccursaleBinding.bind(view)
-
         binding.recyclerViewSuccursale.layoutManager = LinearLayoutManager(requireContext())
         succursaleAdapter = SuccursaleAdapter()
         binding.recyclerViewSuccursale.adapter = succursaleAdapter
 
-        viewModel.getListSuccursale(args.aut.toString())
+        nbSuccursales()
+        listSuccursales()
+        binding.editSearchSuccursale.setOnClickListener() {
+            var strEditSearch = binding.editSearchSuccursale.text.toString()
+            if (strEditSearch.isNotBlank()) {
+                budgetSuccursale(strEditSearch)
+            } else {
+                listSuccursales()
+            }
+        }
+    }
 
-        viewModel.responseListSuccursale.observe(viewLifecycleOwner, Observer { response ->
-            if(response.isSuccessful){
+    private fun budgetSuccursale(strEditSearch: String) {
+        viewModel.getBudgetSuccursale(args.aut.toString(), strEditSearch)
+
+        viewModel.responseBudgetSuccursale.observe(viewLifecycleOwner, Observer { response ->
+            if (response.isSuccessful) {
                 val responseBody = response.body()
-                if(responseBody != null && responseBody.statut == "OK"){
+                if (responseBody != null && responseBody.statut == "OK") {
+                    var listSuccursale: List<Succursale> = listOf(responseBody.succursale)
+                    binding.tvRienAfficher.visibility = View.GONE
+                    succursaleAdapter.setListSuccursales(listSuccursale)
+                    binding.recyclerViewSuccursale.adapter = succursaleAdapter
+                } else if (responseBody != null && responseBody.statut == "PASOK") {
+                    binding.tvRienAfficher.text = getString(R.string.succursale_inexistante)
+                    binding.tvRienAfficher.visibility = View.VISIBLE
+                }
+            }
+        })
+    }
+
+    private fun listSuccursales() {
+        viewModel.getListSuccursale(args.aut.toString())
+        //Observer pour la liste des succursales
+        viewModel.responseListSuccursale.observe(viewLifecycleOwner, Observer { response ->
+            if (response.isSuccessful) {
+                val responseBody = response.body()
+                if (responseBody != null && responseBody.statut == "OK") {
                     binding.tvRienAfficher.visibility = View.GONE
                     succursaleAdapter.setListSuccursales(responseBody.succursales)
                     binding.recyclerViewSuccursale.adapter = succursaleAdapter
-                }
-                else if(responseBody != null && responseBody.statut == "AUCUNE"){
+                } else if (responseBody != null && responseBody.statut == "AUCUNE") {
+                    binding.tvRienAfficher.text = getString(R.string.rien_a_afficher)
                     binding.tvRienAfficher.visibility = View.VISIBLE
+                }
+            }
+        })
+    }
+
+    private fun nbSuccursales(){
+        viewModel.getNbSuccursales(args.aut.toString())
+        //Observer pour la liste des succursales
+        viewModel.responseNbSuccursale.observe(viewLifecycleOwner, Observer { response ->
+            if (response.isSuccessful) {
+                val responseBody = response.body()
+                if (responseBody != null && responseBody.statut == "OK") {
+                    binding.tvRienAfficher.visibility = View.GONE
+                    binding.tvNbSuccursales.text = responseBody.nbSuccursales
                 }
             }
         })

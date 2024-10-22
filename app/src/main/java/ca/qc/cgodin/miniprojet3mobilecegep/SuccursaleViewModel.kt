@@ -64,12 +64,12 @@ class SuccursaleViewModel (private val succursalesRepository: SuccursalesReposit
 
     //récupérer la liste des succursales pour le compte qui est connecté
     fun getListSuccursale(strMat: String){
-        Log.d("SuccursaleViewModel", "getListSuccursale called")
+        Log.d("SuccursaleViewModel", "getListSuccursale called with Matricule: $strMat")
         listSuccursale(strMat)
     }
 
     private fun listSuccursale(strMat: String) = viewModelScope.launch{
-        Log.d("SuccursaleViewModel", "Attempting to get list of succursale: $strMat")
+        Log.d("SuccursaleViewModel", "Attempting to get list of succursale of matricule: $strMat")
         try {
             val response = succursalesRepository.getListSuccursale(strMat)
             Log.d("SuccursaleViewModel", "Received response: $response")
@@ -77,6 +77,39 @@ class SuccursaleViewModel (private val succursalesRepository: SuccursalesReposit
             responseListSuccursale.postValue(response)
         }catch (e: Exception){
             Log.e("SuccursaleViewModel", "Error getting list of succursale", e)
+        }
+    }
+
+    fun getBudgetSuccursale(strMat:String, strSearchSuccursale:String){
+        Log.d("SuccursaleViewModel", "getBudgetSuccursale called")
+        budgetSuccursale(strMat, strSearchSuccursale)
+    }
+    private fun budgetSuccursale(strMat:String, strSearchSuccursale:String) = viewModelScope.launch{
+        Log.d("SuccursaleViewModel", "Attempting to get budget of succursale: $strSearchSuccursale")
+        try {
+            val response = succursalesRepository.getBudgetSuccursale(strMat, strSearchSuccursale)
+            Log.d("SuccursaleViewModel", "Received response: $response")
+            Log.d("SuccursaleViewModel", "Response body: ${response.body()}")
+            responseBudgetSuccursale.postValue(response)
+        }catch (e: Exception){
+            Log.e("SuccursaleViewModel", "Error getting budget of succursale", e)
+        }
+    }
+
+    fun getNbSuccursales(strMat:String){
+        Log.d("SuccursaleViewModel", "nbSuccursale called")
+        nbSuccursales(strMat)
+    }
+
+    private fun nbSuccursales(strMat:String) = viewModelScope.launch{
+        Log.d("SuccursaleViewModel", "Attempting to get number of succursales: $strMat")
+        try {
+            val response = succursalesRepository.getNbSuccursale(strMat)
+            Log.d("SuccursaleViewModel", "Received response: $response")
+            Log.d("SuccursaleViewModel", "Response body: ${response.body()}")
+            responseNbSuccursale.postValue(response)
+        }catch (e: Exception){
+            Log.e("SuccursaleViewModel", "Error getting number of succursales", e)
         }
     }
 }

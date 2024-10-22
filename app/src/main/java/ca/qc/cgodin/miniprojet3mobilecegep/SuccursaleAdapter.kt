@@ -30,8 +30,8 @@ class SuccursaleAdapter() :
 
     override fun getItemCount(): Int = succursales.size
 
-    fun setListSuccursales(articles: List<Succursale>) {
-        this.succursales = articles
+    fun setListSuccursales(succursales: List<Succursale>) {
+        this.succursales = succursales
         notifyDataSetChanged()
     }
 }

@@ -1,5 +1,6 @@
 package ca.qc.cgodin.miniprojet3mobilecegep
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -56,7 +57,8 @@ class SuccursaleActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
             R.id.deconnexionItem -> {
-                //ajouter une activité pour contenir la page de connexion, ensuite la remplacer
+                val intent = Intent(this@SuccursaleActivity, MainActivity::class.java)
+                startActivity(intent)
                 true
             }
             else ->{
