@@ -65,6 +65,8 @@ class ConnexionFragment : Fragment() {
 //                    }
                     val intent = Intent(this@ConnexionFragment.context, SuccursaleActivity::class.java)
                     intent.putExtra("aut", responseBody.student?.matricule.toString())
+                    intent.putExtra("prenom", responseBody.student?.prenom)
+                    intent.putExtra("nom", responseBody.student?.nom)
                     startActivity(intent)
                 }
                 else {

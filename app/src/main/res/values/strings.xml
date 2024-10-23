@@ -34,5 +34,6 @@
     <string name="ville_invalide">Ville invalide</string>
     <string name="ville_budget_invalide">Ville et budget invalide</string>
     <string name="operation_succursale_existe">Succursale déjà existante</string>
-
+    <string name="compte_nom_prenom">%1$s %2$s</string>
+    <string name="champ_annote">Les champs annotés par * sont obligatoires</string>
 </resources>

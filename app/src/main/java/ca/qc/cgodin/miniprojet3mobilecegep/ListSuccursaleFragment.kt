@@ -48,6 +48,7 @@ class ListSuccursaleFragment : Fragment() {
         binding.recyclerViewSuccursale.layoutManager = LinearLayoutManager(requireContext())
         succursaleAdapter = SuccursaleAdapter()
         binding.recyclerViewSuccursale.adapter = succursaleAdapter
+        binding.recyclerViewSuccursale.visibility = View.VISIBLE
 
         nbSuccursales()
         listSuccursales()
@@ -56,6 +57,7 @@ class ListSuccursaleFragment : Fragment() {
             if (strEditSearch.isNotBlank()) {
                 budgetSuccursale(strEditSearch)
             } else {
+                binding.recyclerViewSuccursale.visibility = View.VISIBLE
                 listSuccursales()
             }
         }
@@ -70,11 +72,14 @@ class ListSuccursaleFragment : Fragment() {
                 if (responseBody != null && responseBody.statut == "OK") {
                     var listSuccursale: List<Succursale> = listOf(responseBody.succursale)
                     binding.tvRienAfficher.visibility = View.GONE
+                    binding.recyclerViewSuccursale.visibility = View.VISIBLE
                     succursaleAdapter.setListSuccursales(listSuccursale)
                     binding.recyclerViewSuccursale.adapter = succursaleAdapter
                 } else if (responseBody != null && responseBody.statut == "PASOK") {
                     binding.tvRienAfficher.text = getString(R.string.succursale_inexistante)
                     binding.tvRienAfficher.visibility = View.VISIBLE
+                    binding.recyclerViewSuccursale.visibility = View.GONE
+
                 }
             }
         })

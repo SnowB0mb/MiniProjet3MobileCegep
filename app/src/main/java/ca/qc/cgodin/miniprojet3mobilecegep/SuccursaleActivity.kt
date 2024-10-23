@@ -48,6 +48,7 @@ class SuccursaleActivity : AppCompatActivity() {
         val bundle = Bundle().apply{
             putSerializable("aut", intent.getStringExtra("aut"))
         }
+        binding.tvNomPrenom.text = getString(R.string.compte_nom_prenom, intent.getStringExtra("prenom"), intent.getStringExtra("nom"))
 
         //Ajout de listeners aux items du menu pour pouvoir envoyer le matricule aux fragments
         binding.bottomNavigationMenu.menu.findItem(R.id.operationSuccursaleFragment).setOnMenuItemClickListener {
