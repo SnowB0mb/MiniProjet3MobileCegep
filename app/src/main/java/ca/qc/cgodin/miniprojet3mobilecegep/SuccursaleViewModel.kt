@@ -64,12 +64,12 @@ class SuccursaleViewModel (private val succursalesRepository: SuccursalesReposit
 
     //récupérer la liste des succursales pour le compte qui est connecté
     fun getListSuccursale(strMat: String){
-        Log.d("SuccursaleViewModel", "getListSuccursale called")
+        Log.d("SuccursaleViewModel", "getListSuccursale called with Matricule: $strMat")
         listSuccursale(strMat)
     }
 
     private fun listSuccursale(strMat: String) = viewModelScope.launch{
-        Log.d("SuccursaleViewModel", "Attempting to get list of succursale: $strMat")
+        Log.d("SuccursaleViewModel", "Attempting to get list of succursale of matricule: $strMat")
         try {
             val response = succursalesRepository.getListSuccursale(strMat)
             Log.d("SuccursaleViewModel", "Received response: $response")
@@ -77,6 +77,73 @@ class SuccursaleViewModel (private val succursalesRepository: SuccursalesReposit
             responseListSuccursale.postValue(response)
         }catch (e: Exception){
             Log.e("SuccursaleViewModel", "Error getting list of succursale", e)
+        }
+    }
+
+    fun getBudgetSuccursale(strMat:String, strSearchSuccursale:String){
+        Log.d("SuccursaleViewModel", "getBudgetSuccursale called")
+        budgetSuccursale(strMat, strSearchSuccursale)
+    }
+    private fun budgetSuccursale(strMat:String, strSearchSuccursale:String) = viewModelScope.launch{
+        Log.d("SuccursaleViewModel", "Attempting to get budget of succursale: $strSearchSuccursale")
+        try {
+            val response = succursalesRepository.getBudgetSuccursale(strMat, strSearchSuccursale)
+            Log.d("SuccursaleViewModel", "Received response: $response")
+            Log.d("SuccursaleViewModel", "Response body: ${response.body()}")
+            responseBudgetSuccursale.postValue(response)
+        }catch (e: Exception){
+            Log.e("SuccursaleViewModel", "Error getting budget of succursale", e)
+        }
+    }
+
+    fun getNbSuccursales(strMat:String){
+        Log.d("SuccursaleViewModel", "nbSuccursale called")
+        nbSuccursales(strMat)
+    }
+
+    private fun nbSuccursales(strMat:String) = viewModelScope.launch{
+        Log.d("SuccursaleViewModel", "Attempting to get number of succursales: $strMat")
+        try {
+            val response = succursalesRepository.getNbSuccursale(strMat)
+            Log.d("SuccursaleViewModel", "Received response: $response")
+            Log.d("SuccursaleViewModel", "Response body: ${response.body()}")
+            responseNbSuccursale.postValue(response)
+        }catch (e: Exception){
+            Log.e("SuccursaleViewModel", "Error getting number of succursales", e)
+        }
+    }
+
+    fun ajouterModifierSuccursale(strMat:String, strVille:String, strBudget:String){
+        Log.d("SuccursaleViewModel", "ajoutModifierSuccursale called")
+        ajoutSuccursale(strMat, strVille, strBudget)
+    }
+
+    private fun ajoutSuccursale(strMat:String, strVille:String, strBudget:String) = viewModelScope.launch{
+        Log.d("SuccursaleViewModel", "Attempting to add or modify succursales: $strVille, $strBudget; by $strMat")
+        try {
+            val response = succursalesRepository.ajoutSuccursale(strMat, strVille, strBudget)
+            Log.d("SuccursaleViewModel", "Received response: $response")
+            Log.d("SuccursaleViewModel", "Response body: ${response.body()}")
+            responseAjoutSuccursale.postValue(response)
+        }catch (e: Exception){
+            Log.e("SuccursaleViewModel", "Error adding or modifying succursale", e)
+        }
+    }
+
+    fun retirerSuccursale(strMat:String, strVille:String){
+        Log.d("SuccursaleViewModel", "ajoutModifierSuccursale called")
+        retraitSuccursale(strMat, strVille)
+    }
+
+    private fun retraitSuccursale(strMat:String, strVille:String) = viewModelScope.launch{
+        Log.d("SuccursaleViewModel", "Attempting to delete succursales: $strVille; by $strMat")
+        try {
+            val response = succursalesRepository.retraitSuccursale(strMat, strVille)
+            Log.d("SuccursaleViewModel", "Received response: $response")
+            Log.d("SuccursaleViewModel", "Response body: ${response.body()}")
+            responseRetraitSuccursale.postValue(response)
+        }catch (e: Exception){
+            Log.e("SuccursaleViewModel", "Error deleting succursale", e)
         }
     }
 }

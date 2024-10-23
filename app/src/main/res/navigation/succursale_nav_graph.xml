@@ -20,6 +20,11 @@
         android:id="@+id/operationSuccursaleFragment"
         android:name="ca.qc.cgodin.miniprojet3mobilecegep.OperationSuccursaleFragment"
         android:label="fragment_operation_succursale"
-        tools:layout="@layout/fragment_operation_succursale" />
-    <include app:graph="@navigation/user_nav_graph" />
+        tools:layout="@layout/fragment_operation_succursale" >
+        <argument
+            android:name="aut"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null"/>
+    </fragment>
 </navigation>

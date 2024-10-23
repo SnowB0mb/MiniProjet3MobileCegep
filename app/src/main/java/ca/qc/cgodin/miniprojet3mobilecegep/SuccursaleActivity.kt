@@ -1,5 +1,6 @@
 package ca.qc.cgodin.miniprojet3mobilecegep
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -47,7 +48,24 @@ class SuccursaleActivity : AppCompatActivity() {
         val bundle = Bundle().apply{
             putSerializable("aut", intent.getStringExtra("aut"))
         }
-        navController.navigate(R.id.listSuccursaleFragment, bundle)
+        binding.tvNomPrenom.text = getString(R.string.compte_nom_prenom, intent.getStringExtra("prenom"), intent.getStringExtra("nom"))
+
+        //Ajout de listeners aux items du menu pour pouvoir envoyer le matricule aux fragments
+        binding.bottomNavigationMenu.menu.findItem(R.id.operationSuccursaleFragment).setOnMenuItemClickListener {
+            navController.navigate(R.id.operationSuccursaleFragment, bundle)
+            true
+        }
+        binding.bottomNavigationMenu.menu.findItem(R.id.listSuccursaleFragment).setOnMenuItemClickListener {
+            navController.navigate(R.id.listSuccursaleFragment, bundle)
+            true
+        }
+        //Décommenter quand le fragment sera ajouté
+//        binding.bottomNavigationMenu.menu.findItem(R.id.savedSuccursaleFragment).setOnMenuItemClickListener {
+//            navController.navigate(R.id.savedSuccursaleFragment, bundle)
+//            true
+//        }
+        //Le premier fragment à afficher (le start destination définit dans le nav_graph) avec le matricule de l'utilisateur
+        navController.navigate(navController.graph.startDestinationId, bundle)
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_toolbar, menu)
@@ -56,7 +74,8 @@ class SuccursaleActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
             R.id.deconnexionItem -> {
-                //ajouter une activité pour contenir la page de connexion, ensuite la remplacer
+                val intent = Intent(this@SuccursaleActivity, MainActivity::class.java)
+                startActivity(intent)
                 true
             }
             else ->{
