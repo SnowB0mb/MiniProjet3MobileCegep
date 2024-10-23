@@ -13,8 +13,8 @@
     <string name="btn_enregistrement_valider">Enregistrer</string>
     <string name="btn_enregistrement_annuler">Annuler</string>
     <string name="erreur_champ_vide">*</string>
-    <string name="lbl_liste_ville">Ville: </string>
-    <string name="lbl_liste_budget">Budget: </string>
+    <string name="lbl_ville">Ville: </string>
+    <string name="lbl_budget">Budget: </string>
     <string name="rien_a_afficher">Rien à afficher</string>
     <string name="operation_succursale_menu">Opérations sur les succursales</string>
     <string name="liste_succursale_menu">Liste des succursales</string>
@@ -23,4 +23,16 @@
     <string name="placeholder_search_succursale">Succursale</string>
     <string name="succursale_inexistante">Succursale inexistante</string>
     <string name="nombre_succursales">Nombre de succursales</string>
+    <string name="lbl_operation_ajout">Ajout/Modification d\'une succursale</string>
+    <string name="lbl_operation_retrait">Retrait d\'une succursale</string>
+    <string name="btn_soumettre">Soumettre</string>
+    <string name="btn_effacer">Effacer</string>
+    <string name="operation_ajouter_ok">Succursale ajoutée</string>
+    <string name="operation_modifier_ok">Succursale modifiée</string>
+    <string name="operation_retrait_ok">Succursale retirée</string>
+    <string name="budget_invalide">Budget invalide</string>
+    <string name="ville_invalide">Ville invalide</string>
+    <string name="ville_budget_invalide">Ville et budget invalide</string>
+    <string name="operation_succursale_existe">Succursale déjà existante</string>
+
 </resources>

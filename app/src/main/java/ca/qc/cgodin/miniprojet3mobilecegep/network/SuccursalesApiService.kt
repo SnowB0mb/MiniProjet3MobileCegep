@@ -9,7 +9,9 @@ import retrofit2.Response
 import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.HTTP
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface SuccursalesApiService {
     @FormUrlEncoded
@@ -56,15 +58,14 @@ interface SuccursalesApiService {
     ): Response<ResponseOperation>
 
     @FormUrlEncoded
-    @DELETE("/succursales/Succursale-Retrait")
+    @HTTP(method = "DELETE", path = "/succursales/Succursale-Retrait", hasBody = true)
     suspend fun retraitSuccursale(
         @Field("Aut") aut: String,
         @Field("Ville") ville: String,
     ): Response<ResponseOperation>
 
-    @FormUrlEncoded
-    @DELETE("/succursales/Succursale-Suppression")
+    @HTTP(method = "DELETE", path = "/succursales/Succursale-Suppression", hasBody = true)
     suspend fun suppressionSuccursale(
-        @Field("Aut") aut: String,
+        @Query("Aut") aut: String,
     ): Response<ResponseOperation>
 }
