@@ -59,11 +59,10 @@ class SuccursaleActivity : AppCompatActivity() {
             navController.navigate(R.id.listSuccursaleFragment, bundle)
             true
         }
-        //Décommenter quand le fragment sera ajouté
-//        binding.bottomNavigationMenu.menu.findItem(R.id.savedSuccursaleFragment).setOnMenuItemClickListener {
-//            navController.navigate(R.id.savedSuccursaleFragment, bundle)
-//            true
-//        }
+        binding.bottomNavigationMenu.menu.findItem(R.id.savedSuccursaleFragment).setOnMenuItemClickListener {
+            navController.navigate(R.id.savedSuccursaleFragment, bundle)
+            true
+        }
         //Le premier fragment à afficher (le start destination définit dans le nav_graph) avec le matricule de l'utilisateur
         navController.navigate(navController.graph.startDestinationId, bundle)
     }

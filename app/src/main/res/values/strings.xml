@@ -36,4 +36,7 @@
     <string name="operation_succursale_existe">Succursale déjà existante</string>
     <string name="compte_nom_prenom">%1$s %2$s</string>
     <string name="champ_annote">Les champs annotés par * sont obligatoires</string>
+    <string name="btn_favoris">❤️</string>
+    <string name="btn_Supprimer">❌Supprimer❌</string>
+
 </resources>

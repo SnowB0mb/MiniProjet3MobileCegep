@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +20,7 @@ class ListSuccursaleFragment : Fragment() {
     private lateinit var binding: FragmentListSuccursaleBinding
     private val viewModel: SuccursaleViewModel by navGraphViewModels(R.id.succursale_nav_graph)
     private lateinit var succursaleAdapter: SuccursaleAdapter
+    private lateinit var favorisViewModel: FavorisViewModel
     val args: ListSuccursaleFragmentArgs by navArgs()
 
     private var param1: String? = null
@@ -37,6 +38,7 @@ class ListSuccursaleFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         binding = FragmentListSuccursaleBinding.inflate(inflater, container, false)
         return binding.root
@@ -46,7 +48,8 @@ class ListSuccursaleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentListSuccursaleBinding.bind(view)
         binding.recyclerViewSuccursale.layoutManager = LinearLayoutManager(requireContext())
-        succursaleAdapter = SuccursaleAdapter()
+        favorisViewModel = ViewModelProvider(this).get(FavorisViewModel::class.java)
+        succursaleAdapter = SuccursaleAdapter(favorisViewModel)
         binding.recyclerViewSuccursale.adapter = succursaleAdapter
         binding.recyclerViewSuccursale.visibility = View.VISIBLE
 

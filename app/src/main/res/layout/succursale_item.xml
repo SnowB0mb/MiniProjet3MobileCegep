@@ -53,4 +53,15 @@
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/tvListeVille" />
+
+    <Button
+        android:id="@+id/btnFavoris"
+        android:layout_width="72dp"
+        android:layout_height="48dp"
+        android:text="@string/btn_favoris"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.921"
+        app:layout_constraintStart_toEndOf="@+id/tvListeBudget"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
