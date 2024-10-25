@@ -7,12 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
-import androidx.recyclerview.widget.LinearLayoutManager
-import ca.qc.cgodin.miniprojet3mobilecegep.databinding.FragmentListSuccursaleBinding
 import ca.qc.cgodin.miniprojet3mobilecegep.databinding.FragmentOperationSuccursaleBinding
-import ca.qc.cgodin.miniprojet3mobilecegep.models.Succursale
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -24,6 +22,7 @@ class OperationSuccursaleFragment : Fragment() {
     private lateinit var binding: FragmentOperationSuccursaleBinding
     private val viewModel: SuccursaleViewModel by navGraphViewModels(R.id.succursale_nav_graph)
     private lateinit var succursaleAdapter: SuccursaleAdapter
+    private lateinit var favorisViewModel: FavorisViewModel
     val args: OperationSuccursaleFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +45,8 @@ class OperationSuccursaleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentOperationSuccursaleBinding.bind(view)
-        succursaleAdapter = SuccursaleAdapter()
+        favorisViewModel = ViewModelProvider(this).get(FavorisViewModel::class.java)
+        succursaleAdapter = SuccursaleAdapter(favorisViewModel)
 
         binding.btnEffacerAjoutModif.setOnClickListener() {
             binding.tvStatutAjoutModif.text = ""

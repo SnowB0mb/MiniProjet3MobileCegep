@@ -50,6 +50,14 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    // Room
+    implementation(libs.room.runtime)
+    kapt(libs.room.compiler)
+    implementation(libs.room.ktx)
+    implementation(libs.lifecycle.viewmodel.ktx)
+    api(libs.kotlinx.coroutines.core)
+    api(libs.kotlinx.coroutines.android)
+
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.4") // Add Navigation Fragment
     implementation("androidx.navigation:navigation-ui-ktx:2.7.4") // Add Navigation UI
     // Retrofit
