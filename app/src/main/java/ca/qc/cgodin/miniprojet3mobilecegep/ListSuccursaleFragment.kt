@@ -96,6 +96,7 @@ class ListSuccursaleFragment : Fragment() {
                 val responseBody = response.body()
                 if (responseBody != null && responseBody.statut == "OK") {
                     binding.tvRienAfficher.visibility = View.GONE
+                    binding.tvRienAfficher.visibility = View.GONE
                     succursaleAdapter.setListSuccursales(responseBody.succursales)
                     binding.recyclerViewSuccursale.adapter = succursaleAdapter
                 } else if (responseBody != null && responseBody.statut == "AUCUNE") {
